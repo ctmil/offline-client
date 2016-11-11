@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-
-export class Ticket {
-	id: number;
-	name: string;
-}
+import { Ticket } from './ticket';
+import { TicketDetailComponent } from './ticket-detail.component';
 
 const TICKETS: Ticket[] = [
   { id: 11, name: '0001-00000001' },
@@ -31,14 +28,7 @@ const TICKETS: Ticket[] = [
 				<span class="badge">{{ticket.id}}</span> {{ticket.name}}
 			</li>
 		</ul>
-		<div *ngIf="selectedTicket">
-		      <h2>{{selectedTicket.name}} details!</h2>
-		      <div><label>id: </label>{{selectedTicket.id}}</div>
-		      <div>
-		        <label>name: </label>
-		        <input [(ngModel)]="selectedTicket.name" placeholder="name"/>
-		      </div>
-		</div>
+		<my-ticket-detail [ticket] = "selectedTicket"></my-ticket-detail>
 		`,
 styles: [`
     .selected {
