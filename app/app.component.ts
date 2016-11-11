@@ -39,7 +39,7 @@ const TICKETS: Ticket[] = [
 		        <input [(ngModel)]="selectedTicket.name" placeholder="name"/>
 		      </div>
 		</div>
-		`
+		`,
 styles: [`
     .selected {
       background-color: #CFD8DC !important;
