@@ -1,19 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Ticket } from './ticket';
 import { TicketDetailComponent } from './ticket-detail.component';
+import { TicketService } from './ticket.service';
 
-const TICKETS: Ticket[] = [
-  { id: 11, name: '0001-00000001' },
-  { id: 12, name: '0001-00000002' },
-  { id: 13, name: '0001-00000003' },
-  { id: 14, name: '0001-00000004' },
-  { id: 15, name: '0001-00000005' },
-  { id: 16, name: '0001-00000006' },
-  { id: 17, name: '0001-00000007' },
-  { id: 18, name: '0001-00000008' },
-  { id: 19, name: '0001-00000009' },
-  { id: 20, name: '0001-00000010' }
-];
 
 
 @Component({
@@ -78,17 +67,30 @@ styles: [`
       margin-right: .8em;
       border-radius: 4px 0 0 4px;
     }
-  `]
+  `],
+  providers: [TicketService]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
 	title = 'Cliente Off-line para Odoo';
-	tickets = TICKETS;
+	tickets: Ticket[];
 	selectedTicket: Ticket;
+
+	constructor(private ticketService: TicketService) { }
+
 
 	onSelect(ticket: Ticket): void {
 	  this.selectedTicket = ticket;
 	}
 
-	}
+	ngOnInit(): void {
+	    this.getTickets();
+	  }
+
+
+	getTickets(): void {
+	    this.ticketService.getTickets().then(tickets => this.tickets = tickets);
+	  }
+
+}
 
