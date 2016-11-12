@@ -1,22 +1,37 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params }   from '@angular/router';
+import { Location }                 from '@angular/common';
+
+import { TicketService } from './ticket.service';
 import { Ticket } from './ticket';
 
 @Component({
+  moduleId: module.id,
   selector: 'my-ticket-detail',
-  template: `
-    <div *ngIf="ticket">
-      <h2>{{ticket.name}} details!</h2>
-      <div><label>id: </label>{{ticket.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="ticket.name" placeholder="name"/>
-      </div>
-    </div>
-  `
+  templateUrl: 'ticket-detail.component.html',
 })
 
-export class TicketDetailComponent {
+export class TicketDetailComponent implements OnInit {
 	@Input()
 	  ticket: Ticket;
+
+	constructor(
+	  private ticketService: TicketService,
+	  private route: ActivatedRoute,
+	  private location: Location
+	) {}
+
+	ngOnInit(): void {
+	  this.route.params.forEach((params: Params) => {
+	    let id = +params['id'];
+	    this.ticketService.getTicket(id)
+	      .then(ticket => this.ticket = ticket);
+	  });
+	}
+
+	goBack(): void {
+	  this.location.back();
+	}
+
 }
 

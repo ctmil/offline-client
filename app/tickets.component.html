@@ -1,0 +1,10 @@
+<h2>My Tickets</h2>
+	<ul class="heroes">
+		<li *ngFor="let ticket of tickets" 
+			[class.selected]="ticket === selectedTicket"
+			(click)="onSelect(ticket)">
+			<!-- each ticket goes here -->
+				<span class="badge">{{ticket.id}}</span> {{ticket.name}}
+		</li>
+	</ul>
+<my-ticket-detail [ticket] = "selectedTicket"></my-ticket-detail>
