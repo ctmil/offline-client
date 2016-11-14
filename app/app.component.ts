@@ -4,6 +4,9 @@ import { Component } from '@angular/core';
   template: `
         <nav class="navbar navbar-inverse navbar-fixed-top">
 	      <div class="container">
+	            <div class="navbar-header">
+		          <a class="navbar-brand" href="#">{{title}}</a>
+	      	    </div>
 	            <div id="navbar" class="collapse navbar-collapse">
 		          <ul class="nav navbar-nav">
 			      <li class="active"><a routerLink="/dashboard">Dashboard</a></li>
@@ -13,7 +16,6 @@ import { Component } from '@angular/core';
 	      </div>
 	</nav>
 	<div class="container">
-	    <h1>{{title}}</h1>
 	    <router-outlet></router-outlet>
 	</div>
   `
