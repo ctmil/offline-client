@@ -1,7 +1,8 @@
 <h2>My Tickets</h2>
-	<ul class="heroes">
+	<ul class="list-group">
 		<li *ngFor="let ticket of tickets" 
-			[class.selected]="ticket === selectedTicket"
+			class="list-group-item"
+			[class.active]="ticket === selectedTicket"
 			(click)="onSelect(ticket)">
 			<!-- each ticket goes here -->
 				<span class="badge">{{ticket.id}}</span> {{ticket.name}}
@@ -11,5 +12,5 @@
 	  <h2>
 	    {{selectedTicket.name | uppercase}} is my ticket
 	  </h2>
-	  <button (click)="gotoDetail()">View Details</button>
+	  <button type="button" class="btn btn-success" (click)="gotoDetail()">View Details</button>
 	</div>
