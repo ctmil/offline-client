@@ -5,7 +5,7 @@
 			[class.active]="ticket === selectedTicket"
 			(click)="onSelect(ticket)">
 			<!-- each ticket goes here -->
-				<span class="badge">{{ticket.id}}</span> {{ticket.name}}
+				<span class="badge">{{ticket.id}}</span> {{ticket.name}} {{ticket.amount}}
 		</li>
 	</ul>
 	<div *ngIf="selectedTicket">
